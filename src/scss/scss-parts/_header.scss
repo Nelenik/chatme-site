@@ -1,0 +1,249 @@
+.header {
+  padding: 20px 0;
+  background-color: $primary;
+
+  @include sol992 {
+    padding: 10px 0;
+  }
+
+  &__container {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: space-between;
+
+    @include sol1200 {
+      flex-direction: column;
+    }
+
+    @include sol992 {
+      flex-direction: row;
+    }
+  }
+
+  &__logo {
+    flex-shrink: 0;
+    display: inline-block;
+    padding-top: 60px;
+    background-image: url("@img/secret.svg");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 50px 50px;
+    outline: none;
+
+    @include sol1200 {
+      display: flex;
+      align-items: center;
+      height: 50px;
+      padding-top: 0;
+      padding-right: 60px;
+      background-position: right center;
+    }
+
+    @include sol992 {
+      height: 40px;
+      background-size: 40px 40px;
+      padding-right: 50px;
+    }
+
+    @include sol500 {
+      background-size: 30px 30px;
+      padding-right: 40px;
+      height: 30px;
+    }
+
+    img {
+      display: block;
+      height: 30px;
+      width: auto;
+
+      @include sol992 {
+        height: 25px;
+      }
+
+      @include sol500 {
+        height: 20px;
+      }
+    }
+  }
+
+  &__nav {
+    @include sol992 {
+      position: fixed;
+      z-index: 1000;
+      top: 0px;
+      right: 0px;
+      top: -100%;
+      right: -100%;
+    }
+  }
+}
+
+.menu {
+  @include sol992 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 70px 20px 20px;
+    height: 100%;
+    width: 100vw;
+    background-color: $primary;
+    background-image: url('@img/secret.svg');
+    background-position: bottom 20px center;
+    background-size: auto 15vh;
+    background-repeat: no-repeat;
+  }
+
+  @include vh420 {
+    background-image: unset;
+  }
+
+  &__close {
+    display: none;
+
+    @include sol992 {
+      flex-shrink: 0;
+      display: block;
+      right: 20px;
+      top: 20px;
+      width: 30px;
+      height: 30px;
+      border: 2px solid $white;
+      border-radius: 50%;
+
+      &::before {
+        content: '\2717';
+        color: $white;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    gap: 15px;
+
+    @include sol992 {
+      flex-direction: column;
+      align-items: center;
+      max-height: 100%;
+      overflow-y: auto;
+    }
+  }
+
+  &__item {}
+
+  &__link {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    padding: 8px 12px;
+    font-size: 18px;
+    font-weight: 500;
+    color: $white;
+    border-radius: 5px;
+    @include textBreak;
+    outline: none;
+    transition: background-color 0.3s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 38px);
+      height: 1px;
+      background-color: $white;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &:focus-visible,  &:active {
+      background-color: $primary-light;
+    }
+    &:hover:not(:focus-visible):not(:active) {
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.burger {
+  display: none;
+
+  @include sol992 {
+    position: relative;
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    outline: 2px solid transparent;
+    outline-offset: 5px;
+    transition: outline-color 0.3s ease;
+
+    &::before,
+    &::after,
+    &__line {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: 100%;
+      height: 2px;
+      background-color: $white;
+      transition: background-color 0.3s ease, width 0.3s ease;
+    }
+
+    &::before {
+      content: '';
+      top: 0;
+    }
+
+    &::after {
+      content: '';
+      bottom: 0;
+    }
+
+    &__line {
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+
+    &:focus-visible{
+      outline-color: $primary-light;
+
+      &::before,
+      &::after,
+      .burger__line {
+        background-color: $primary-light;
+      }
+    }
+
+    &:hover:not(:focus-visible):not(:active) {
+      .burger__line {
+        width: 70%;
+      }
+      &::after {
+        width: 50%;
+      }
+    }
+
+    &:active {
+      .burger__line, &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.js-menu {
+  transition: transform 0.4s ease-in;
+
+  &--open {
+    transform: translate(-100%, 100%);
+    transform-origin: top right;
+  }
+}
