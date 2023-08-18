@@ -30,7 +30,7 @@
     }
 
     @include sol576 {
-      padding-top: 250px;
+      // padding-top: 250px;
       background-position: top 30px center;
       background-size: max(200px, 40%) auto;
     }
@@ -55,6 +55,7 @@
     }
 
     @include sol576 {
+      padding-top: 250px;
       align-items: center;
       width: 100%;
       min-height: unset;
@@ -100,6 +101,7 @@
 
   &__btn {
     align-self: flex-start;
+    min-width: 150px;
     width: min(50%, 150px);
     padding: 8px 12px;
     font-size: 18px;
